@@ -1,0 +1,30 @@
+class Solution {
+    public long countSubarrays(int[] nums, int k) {
+      long maxNum = Long.MIN_VALUE, count = 0;
+        long l = 0, r = 0, ans = 0;
+
+       for (int num : nums){
+        maxNum = Math.max(maxNum,num);
+       }
+
+       while(r < nums.length){
+        if(nums[(int)r]== maxNum){
+            count ++;
+        }
+               
+           while(count >= k ){
+                   
+                   if(nums[(int)l]==maxNum){
+                    count--;
+                   }
+
+                   l++;
+                   ans += nums.length-r;
+           }         
+           
+           r++;
+       }
+
+       return ans;
+    }
+}
