@@ -1,0 +1,30 @@
+class Solution {
+    public long countSubarrays(int[] nums, int mink, int maxk) {
+        long ans = 0;
+        long minIndex = -1;
+        long maxIndex = -1;
+        long culpIndex = -1;
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == mink) {
+                minIndex = i;
+            }
+
+            if (nums[i] == maxk) {
+                maxIndex = i;
+            }
+
+            if (nums[i] > maxk || nums[i] < mink) {
+                culpIndex = i;
+            }
+
+            long smaller = Math.min(minIndex, maxIndex);
+            long temp = smaller - culpIndex;
+            if (temp > 0) {
+                ans += temp;
+            }
+        }
+
+        return ans;
+    }
+}
