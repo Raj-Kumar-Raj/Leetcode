@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isIsomorphic(String S, String T) {
+        
+        HashMap <Character, Character> s2t = new HashMap<>();
+         HashMap <Character, Character> t2s = new HashMap<>();
+        for (int i  =0; i<S.length(); i++){
+             char s = S.charAt(i);
+              char t = T.charAt(i);
+
+              if(s2t.containsKey(s)){
+                if(s2t.get(s)!=t){
+                    return false;
+                }
+              }
+
+              else{
+                 if(t2s.containsKey(t)){
+                    return false;
+                }
+              
+              
+              s2t.put(s,t);
+              t2s.put(t,s);
+        }
+    
+        }
+            return true;
+    }
+}
