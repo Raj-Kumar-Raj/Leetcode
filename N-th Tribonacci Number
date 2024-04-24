@@ -1,0 +1,26 @@
+class Solution {
+    public int tribonacci(int n) {
+    Map<Integer, Integer> memo= new HashMap<>();
+    return helper(memo, n);
+    }
+
+    public int helper(  Map<Integer, Integer> memo, int n ){
+        if(memo.containsKey(n)){
+            return memo.get(n);
+        }
+        int result=0;
+            
+        if(n==0){
+            result=0;
+        }
+       else if(n==1 || n==2){
+            result=1;
+        }
+        else
+        result=  helper(memo, n-1)+ helper(memo, n-2)+ helper(memo, n-3);
+    
+    memo.put (n,result);
+    return result;
+}
+
+}
