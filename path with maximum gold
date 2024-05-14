@@ -1,0 +1,32 @@
+class Solution {
+    public int getMaximumGold(int[][] grid) {
+        int maxgold =0;
+       int n =  grid.length;
+       int m = grid[0].length;
+    
+       for(int i =0; i <n ; i++){
+        for (int j =0; j<m; j++){
+            if(grid[i][j] != 0){
+                maxgold = Math.max(maxgold, backtrack(grid,  i , j  , n ,m));
+            }
+        }
+       }
+       return maxgold;
+          }
+         public int backtrack(int [][] grid, int i , int j , int n , int m ){
+                if(i<0 || i >=n || j<0 || j>=m || grid[i][j]==0)
+                return 0;
+
+                int currentGold = grid[i][j];
+                grid[i][j]=0;
+
+                int d = backtrack( grid,  i+1 ,  j ,  n , m ); 
+                int u = backtrack( grid,  i-1 ,  j ,  n ,  m );
+                int r = backtrack( grid,  i ,  j+1 ,  n ,  m );
+                int l = backtrack( grid,  i ,  j-1 ,  n ,  m );
+
+                grid[i][j] = currentGold;
+                return currentGold+Math.max(Math.max(d, u), Math.max(r, l));
+            }
+    
+}
